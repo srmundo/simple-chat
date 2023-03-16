@@ -6,8 +6,8 @@ A simple chat.
 
 ## To unfold:
 * 1 . import the database found inside `./config/db`, on your server.
-* 2 . In the `./config/config.php` file, replace the value of the variables
-with the data of your server: 
+* 2 . In the `./config/config.php` file, replace the value of the 
+      variables with the data provided by your server: 
     * hostname: `$host`,
     * username: `$user`, 
     * password. `$pass`.
