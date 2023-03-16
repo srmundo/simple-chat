@@ -1,8 +1,5 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$db = 'simple_chat_db';
+include('./config.php');
 
 $link = mysqli_connect($host, $user, $pass, $db);
 
