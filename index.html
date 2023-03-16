@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat | Started</title>
+    <link rel="stylesheet" href="./src/index.css">
+    <link rel="stylesheet" href="./asset/font/fonts.css">
+    <link rel="stylesheet" href="./asset/icon/fonts/style.css">
+</head>
+
+<body>
+    <div class="cont-all">
+        <div class="container">
+            <div class="cont-h1">
+                <h1>Simple Chat</h1>
+            </div>
+            <form id='form-log' method="post">
+                <h1>Access to room</h1>
+                <div class="cont-in">
+                    <div class="cont-nickname">
+                        <label for="nickname">Nickname</label>
+                        <input type="text" name="nickname" id="in-nickname" placeholder="Choose a nickname">
+                    </div>
+                    <div class="cont-key">
+                        <label for="key">Key</label>
+                        <input type="text" name="key" id="in-key" placeholder="Enter the key to access the room">
+                    </div>
+                </div>
+                <div class="cont-btn">
+                    <button id="btn-access">Access a room</button>
+                    <a id="btn-c-new-room" href="#">Create a new room</a>
+                </div>
+            </form>
+            <form id='form-sign' method="post">
+                <h1>Create a room</h1>
+                <div class="cont-in">
+                    <div class="cont-nickname">
+                        <label for="nickname">Nickname</label>
+                        <input type="text" name="nickname" id="in-nickname-c" placeholder="Choose a nickname">
+                    </div>
+                    <div class="cont-key">
+                        <label for="key">Key</label>
+                        <input type="text" name="key" id="in-key-c" placeholder="Enter the key to access the room">
+                    </div>
+                </div>
+                <div id="cont-btn-generator" class="cont-btn-generator">
+                    <a id="btn-g-k" href="#">Generate key</a>
+                    <div class="show-key-g"><div id="key-g" class="key-g"></div><span id="btn-c-key" class="icon-copy"></span></div>
+                </div>
+                <div class="cont-btn">
+                    <button id="btn-create">Create a new room</button>
+                    <a id="btn-access-s" href="#">Access a room</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+</body>
+
+</html>

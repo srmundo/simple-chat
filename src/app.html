@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat</title>
+    <script src="./jquery-3.6.4.js"></script>
+    <link rel="stylesheet" href="./app.css">
+    <link rel="stylesheet" href="../asset/font/fonts.css">
+    <link rel="stylesheet" href="../asset/icon/fonts/style.css">
+</head>
+
+<body>
+    <style>
+        #name-01 {
+            color: rgba(0, 0, 0, 0.6);
+            margin-left: 5px;
+            height: 20px;
+            overflow-y: hidden;
+        }
+
+        #name-01:hover {
+            cursor: pointer;
+            color: #fff;
+            text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s;
+        }
+    </style>
+    <form id="form-logout" method="post"></form>
+    <input type="file" name="avatar" accept="image/*" id="in-avatar">
+    <div id="container">
+        <aside>
+            <header>
+                <input type="text" placeholder="search">
+                <div style="margin-top: 10px;" class="cont-name">
+                    <h3 id="name-01">
+
+                    </h3>
+                    <div class="triangle-m-u"></div>
+                    <ul id="menu-u">
+                        <li><a id="set_img" href="#"><span id="me-img"></span></span></a>
+                            <p id="show-key"></p>
+                        </li>
+                        <li><a id="btn-exit" href="#">Exit</a></li>
+                    </ul>
+                </div>
+            </header>
+            <ul id="user_room">
+
+            </ul>
+        </aside>
+        <main>
+            <header>
+                <div id="content-img-h"></div>
+                <div>
+                    <h2 id="chat-w"></h2>
+                    <h3 id="q-m"></h3>
+                </div>
+            </header>
+            <div id="content-chat" class="content-chat">
+                <ul id="chat"></ul>
+            </div>
+            <footer>
+                <form action="#" method="get">
+                    <textarea id="in-message" placeholder="Type your message"></textarea>
+                    <a id="btn-send" href="#"><span class="icon-send"></span></a>
+                </form>
+            </footer>
+        </main>
+    </div>
+    <script>
+        let lang = ["Chat with ", " Messages"];
+        const GET_DATELOCAL = JSON.parse(window.sessionStorage.getItem("user"));
+        const messages = document.getElementById('chat');
+        function scrollToBottom() {
+            messages.scrollTop = messages.scrollHeight;
+        }
+        function loadChat() {
+            $.ajax({
+                url: "../config/show-m.php?key=" + GET_DATELOCAL.key + "&user=" + GET_DATELOCAL.name,
+                cache: false,
+                success: (html) => {
+                    $("#chat").html(html);
+                    let shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
+                    if (!shouldScroll) {
+                        scrollToBottom();
+                    }
+                }
+            });
+        }
+        function loadUserStatus() {
+            $.ajax({
+                url: "../config/header_u.php?key=" + GET_DATELOCAL.key + "&user=" + GET_DATELOCAL.name,
+                cache: false,
+                success: (html) => {
+                    $("#user_room").html(html);
+                }
+            });
+        }
+        
+        function qm() {
+            $.ajax({
+                url: "../config/chat-c-m.php?txtHeaderM=" +
+                    lang[1] +
+                    "&key=" +
+                    GET_DATELOCAL.key +
+                    "&user=" +
+                    GET_DATELOCAL.name,
+                cache: false,
+                success: (html) => {
+                    $("#q-m").html(html);
+                }
+            });
+        }
+        function chatW() {
+            $.ajax({
+                url: "../config/chat-w.php?txtHeaderU=" +
+                    lang[0] +
+                    "&key=" +
+                    GET_DATELOCAL.key +
+                    "&user=" +
+                    GET_DATELOCAL.name,
+                cache: false,
+                success: (html) => {
+                    $("#chat-w").html(html);
+                }
+            });
+        }
+        scrollToBottom();
+        setInterval(chatW, 1000);
+        setInterval(qm, 500);
+        setInterval(loadUserStatus, 5000);
+        setInterval(loadChat, 500);
+    </script>
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
