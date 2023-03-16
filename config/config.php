@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$pass = '';
+$host = 'hostname';
+$user = 'username';
+$pass = 'password';
 $db = 'simple_chat_db';
